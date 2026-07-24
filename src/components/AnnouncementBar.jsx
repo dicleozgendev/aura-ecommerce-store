@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Zap, Clock } from 'lucide-react';
+import { Zap, Clock, Info } from 'lucide-react';
 
 export default function AnnouncementBar() {
   const [timeLeft, setTimeLeft] = useState({ hours: 4, minutes: 28, seconds: 45 });
@@ -20,13 +20,27 @@ export default function AnnouncementBar() {
 
   return (
     <div className="announcement-bar">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <span style={{
+          background: 'var(--accent-primary)',
+          color: '#fff',
+          padding: '0.15rem 0.5rem',
+          borderRadius: '99px',
+          fontSize: '0.7rem',
+          fontWeight: 800,
+          letterSpacing: '0.05em',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.25rem'
+        }}>
+          <Info size={12} /> DEMO SHOWCASE
+        </span>
         <Zap size={16} fill="currentColor" />
-        <span>LIMITED DEAL: <strong>FREE SAME-DAY EXPRESS SHIPPING</strong> & 14-Day Money Back Guarantee</span>
+        <span>DEVELOPER PORTFOLIO DEMO: <strong>Interactive E-Commerce Showcase</strong></span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
         <Clock size={15} />
-        <span>Ends In:</span>
+        <span>Demo Countdown:</span>
         <span className="countdown-timer">
           {formatNum(timeLeft.hours)}:{formatNum(timeLeft.minutes)}:{formatNum(timeLeft.seconds)}
         </span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Truck, Headphones, RotateCcw, Sparkles } from 'lucide-react';
+import { ShieldCheck, Truck, Headphones, RotateCcw, Sparkles, Info } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -10,6 +10,26 @@ export default function Footer() {
       marginTop: '4rem'
     }}>
       <div className="container">
+        {/* DEMO PORTFOLIO DISCLAIMER BANNER */}
+        <div style={{
+          background: 'rgba(99, 102, 241, 0.1)',
+          border: '1px solid var(--accent-primary)',
+          borderRadius: '12px',
+          padding: '1rem 1.25rem',
+          marginBottom: '2.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem'
+        }}>
+          <Info size={24} style={{ color: 'var(--accent-primary)', flexShrink: 0 }} />
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+            <strong style={{ color: 'var(--text-primary)', display: 'block', marginBottom: '0.2rem' }}>
+              ⚡ Interactive Developer Portfolio Demo Notice
+            </strong>
+            This website is an interactive portfolio demonstration developed for showcase and presentation purposes. No actual financial transactions or order fulfillments take place. All product reviews, social proof alerts, and customer counters represent sample demonstration data.
+          </div>
+        </div>
+
         {/* Trust Features Bar */}
         <div style={{
           display: 'grid',
@@ -93,7 +113,7 @@ export default function Footer() {
         </div>
 
         <div style={{ textAlign: 'center', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-          © 2026 AURA STORE Inc. All Rights Reserved. High-Converting E-Commerce Platform.
+          © 2026 AURA STORE Inc. Interactive Developer Portfolio Showcase Demo. All Rights Reserved.
         </div>
       </div>
     </footer>
