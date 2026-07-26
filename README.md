@@ -32,9 +32,7 @@ A high-converting, modern, ultra-fast React E-Commerce Store & SaaS Platform equ
 Test the live store directly in your browser:
 👉 **[https://ecommerce-store-umber-two.vercel.app](https://ecommerce-store-umber-two.vercel.app)**
 
-*Demo Admin Access Credentials:*
-- **Username**: `admin`
-- **Password**: `aura2026`
+*Demo Admin Access:* `admin` / `aura2026` — this is a static, front-end-only demo (no real backend, payments or user data behind it), so this login is for portfolio evaluation purposes only.
 
 ---
 
@@ -50,23 +48,23 @@ Test the live store directly in your browser:
 
 ## 🚀 Local Development Setup
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/dicleozgendev/aura-ecommerce-store.git
-   cd aura-ecommerce-store
-   ```
+**Step 1 — Clone the repository:**
+```bash
+git clone https://github.com/dicleozgendev/aura-ecommerce-store.git
+cd aura-ecommerce-store
+```
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+**Step 2 — Install dependencies:**
+```bash
+npm install
+```
 
-3. **Start local development server**:
-   ```bash
-   npm run dev
-   ```
+**Step 3 — Start local development server:**
+```bash
+npm run dev
+```
 
-4. Open `http://localhost:3000` in your browser.
+**Step 4 —** Open `http://localhost:3000` in your browser.
 
 ---
 
