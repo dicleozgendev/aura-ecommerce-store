@@ -22,6 +22,17 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isAdmin, setIsAdmin] = useState(false);
 
+  // Real session check: ask the server whether the HttpOnly cookie set by
+  // api/admin-login.js is still valid, instead of trusting client state
+  // alone. This runs once on load so an admin stays logged in across a
+  // refresh until the token expires (see api/admin-verify.js).
+  useEffect(() => {
+    fetch('/api/admin-verify', { credentials: 'include' })
+      .then((res) => res.json())
+      .then((data) => setIsAdmin(Boolean(data.authenticated)))
+      .catch(() => setIsAdmin(false));
+  }, []);
+
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem('aura_products');
     return saved ? JSON.parse(saved) : PRODUCTS_DATA;
@@ -167,6 +178,7 @@ export default function App() {
         isAdmin={isAdmin}
         onToggleAdmin={() => {
           if (isAdmin) {
+            fetch('/api/admin-logout', { method: 'POST', credentials: 'include' }).catch(() => {});
             setIsAdmin(false);
           } else {
             setIsAdminLoginOpen(true);
@@ -182,7 +194,10 @@ export default function App() {
           setOrders={setOrders}
           leads={leads}
           formatPrice={formatPrice}
-          onExitAdmin={() => setIsAdmin(false)}
+          onExitAdmin={() => {
+            fetch('/api/admin-logout', { method: 'POST', credentials: 'include' }).catch(() => {});
+            setIsAdmin(false);
+          }}
         />
       ) : (
         <main>
