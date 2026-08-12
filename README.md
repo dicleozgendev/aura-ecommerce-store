@@ -68,6 +68,27 @@ npm run dev
 
 ---
 
+## 🔐 Admin Authentication
+
+The "Admin Access" panel is backed by real server-side auth (Vercel
+serverless functions in `api/`), not a password hardcoded in the
+frontend bundle:
+
+- `api/admin-login.js` checks the submitted username/password against
+  `ADMIN_USERNAME` / `ADMIN_PASSWORD_HASH` (a bcrypt hash — never a
+  plaintext password) and, on success, sets a signed, HttpOnly session
+  cookie (`ADMIN_JWT_SECRET`).
+- `api/admin-verify.js` / `api/admin-logout.js` check and clear that
+  cookie.
+
+To run the admin panel locally or after forking this repo, set the
+three environment variables described in `.env.example` (locally in a
+`.env` file, or on Vercel under Project → Settings → Environment
+Variables). Without them, the login endpoint responds with a clear
+"Admin auth is not configured" error instead of silently failing open.
+
+---
+
 ## 📜 License
 
 Distributed under the MIT License. Developed by [dicleozgendev](https://github.com/dicleozgendev).
