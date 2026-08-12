@@ -33,7 +33,7 @@ A high-converting, modern, ultra-fast React E-Commerce Store & SaaS Platform equ
 Test the live store directly in your browser:
 👉 **[https://ecommerce-store-umber-two.vercel.app](https://ecommerce-store-umber-two.vercel.app)**
 
-*Demo Admin Access:* `admin` / `aura2026` — this is a static, front-end-only demo (no real backend, payments or user data behind it), so this login is for portfolio evaluation purposes only.
+*Demo Admin Access:* `admin` / `aura2026` — the shopping/storefront experience (products, cart, checkout flow) is a front-end demo with no real payments processed, but the Admin Dashboard login itself is backed by real server-side authentication (see "Admin Authentication" below). This login is provided for portfolio evaluation purposes only.
 
 ---
 
