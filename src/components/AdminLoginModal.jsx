@@ -1,30 +1,42 @@
 import React, { useState } from 'react';
 import { Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 
-// NOTE: This is a client-side gate for demo/portfolio purposes only.
-// It is NOT real authentication — the check below runs in the browser,
-// so anyone can read the credentials out of the shipped JS bundle. A
-// production deployment needs a real server-side login (session/JWT
-// issued by a backend that verifies credentials against a database),
-// not a hardcoded check like this one.
-const DEMO_USERNAME = 'admin';
-const DEMO_PASSWORD = 'aura2026';
-
+// Real server-side login. Credentials are checked in api/admin-login.js
+// against environment variables (never shipped to the browser); on
+// success the server sets an HttpOnly session cookie. See
+// api/admin-login.js and .env.example for setup.
 export default function AdminLoginModal({ isOpen, onClose, onLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === DEMO_USERNAME && password === DEMO_PASSWORD) {
-      setError('');
-      onLoginSuccess();
-      onClose();
-    } else {
-      setError('Invalid credentials.');
+    setError('');
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/admin-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setUsername('');
+        setPassword('');
+        onLoginSuccess();
+        onClose();
+      } else {
+        setError(data.error || 'Invalid credentials.');
+      }
+    } catch {
+      setError('Could not reach the server. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -85,8 +97,8 @@ export default function AdminLoginModal({ isOpen, onClose, onLoginSuccess }) {
 
           {error && <p style={{ color: 'var(--accent-rose)', fontSize: '0.8rem' }}>{error}</p>}
 
-          <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '0.5rem' }}>
-            <span>Login to Dashboard</span>
+          <button type="submit" className="btn-primary" disabled={isSubmitting} style={{ width: '100%', marginTop: '0.5rem', opacity: isSubmitting ? 0.7 : 1 }}>
+            <span>{isSubmitting ? 'Checking...' : 'Login to Dashboard'}</span>
             <ArrowRight size={16} />
           </button>
         </form>
