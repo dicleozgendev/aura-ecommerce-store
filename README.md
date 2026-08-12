@@ -1,5 +1,6 @@
 # AURA E-Commerce Platform ⚡
 
+
 A high-converting, modern, ultra-fast React E-Commerce Store & SaaS Platform equipped with built-in CRO (Conversion Rate Optimization) marketing tools, AI product recommendations, multi-currency support, and a password-protected Admin Dashboard.
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-6366f1?style=for-the-badge&logo=vercel)](https://ecommerce-store-umber-two.vercel.app)
