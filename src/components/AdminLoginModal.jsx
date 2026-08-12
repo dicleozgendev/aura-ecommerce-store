@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 
+// NOTE: This is a client-side gate for demo/portfolio purposes only.
+// It is NOT real authentication — the check below runs in the browser,
+// so anyone can read the credentials out of the shipped JS bundle. A
+// production deployment needs a real server-side login (session/JWT
+// issued by a backend that verifies credentials against a database),
+// not a hardcoded check like this one.
+const DEMO_USERNAME = 'admin';
+const DEMO_PASSWORD = 'aura2026';
+
 export default function AdminLoginModal({ isOpen, onClose, onLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,12 +19,12 @@ export default function AdminLoginModal({ isOpen, onClose, onLoginSuccess }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if ((username === 'admin' || username === 'demo') && (password === 'aura2026' || password === 'admin')) {
+    if (username === DEMO_USERNAME && password === DEMO_PASSWORD) {
       setError('');
       onLoginSuccess();
       onClose();
     } else {
-      setError('Invalid credentials! (Demo Password: aura2026)');
+      setError('Invalid credentials.');
     }
   };
 
@@ -45,7 +54,7 @@ export default function AdminLoginModal({ isOpen, onClose, onLoginSuccess }) {
           <input
             type="text"
             required
-            placeholder="Username (admin)"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             style={{
@@ -61,7 +70,7 @@ export default function AdminLoginModal({ isOpen, onClose, onLoginSuccess }) {
           <input
             type="password"
             required
-            placeholder="Password (aura2026)"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={{
@@ -84,7 +93,7 @@ export default function AdminLoginModal({ isOpen, onClose, onLoginSuccess }) {
 
         <div style={{ marginTop: '1.25rem', fontSize: '0.75rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem' }}>
           <ShieldCheck size={14} style={{ color: 'var(--accent-emerald)' }} />
-          <span>Encrypted Secure Admin Portal</span>
+          <span>Demo Preview Only — Not Real Authentication</span>
         </div>
       </div>
     </div>
